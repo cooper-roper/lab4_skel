@@ -31,5 +31,6 @@ dependencies {
 test {
 	testLogging {
 		showStandardStreams = true
+		exceptionFormat = "full"
 	}
 }
