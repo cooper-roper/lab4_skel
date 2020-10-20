@@ -58,20 +58,41 @@ public class AListTest {
             al.put(i, i);
             assertEquals(Integer.valueOf(i), al.get(i));
         }
+    }
+
+    @Test
+    /** Test that put and get throw the correct exceptions */
+    public void test21PutGet() {
+        AList<Integer> al = new AList<Integer>(16);
 
         try {
-            al.get(32);
-            al.get(-1);
-            al.put(16, 4);
-            al.put(-1, 4);
-            fail("Didn't throw an exception");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            // This is supposed to happen
+            al.get(32); fail("Didn't throw an exception");
+        } catch (ArrayIndexOutOfBoundsException e) { // supposed to happen
+        } catch (Throwable e){
+            fail("Threw something other than ArrayIndexOutOfBoundsException: " + e);
+        }
+
+        try {
+            al.get(-1); fail("Didn't throw an exception");
+        } catch (ArrayIndexOutOfBoundsException e) { // supposed to happen
+        } catch (Throwable e){
+            fail("Threw something other than ArrayIndexOutOfBoundsException: " + e);
+        }
+
+        try {
+            al.put(-1, 4); fail("Didn't throw an exception");
+        } catch (ArrayIndexOutOfBoundsException e) { // supposed to happen
+        } catch (Throwable e){
+            fail("Threw something other than ArrayIndexOutOfBoundsException: " + e);
+        }
+
+        try {
+            al.put(16, 4); fail("Didn't throw an exception");
+        } catch (ArrayIndexOutOfBoundsException e) { // supposed to happen
         } catch (Throwable e){
             fail("Threw something other than ArrayIndexOutOfBoundsException: " + e);
         }
     }
-
 
     @Test
     /** Test append and pop, making sure it grows as needed */
